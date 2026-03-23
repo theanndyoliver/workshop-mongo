@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nelioalves.workshopmongo.domain.User;
+import com.nelioalves.workshopmongo.dto.UserDTO;
 import com.nelioalves.workshopmongo.services.UserService;
 
 @RestController
@@ -19,9 +19,11 @@ public class UserResource {
 	private UserService userService;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
-		List<User>list = userService.findAll();
-		return ResponseEntity.ok().body(list);
+	public ResponseEntity<List<UserDTO>> findAll() {
+		
+		List<UserDTO> dto = userService.findAll().stream().map(UserDTO::new).toList();
+
+		return ResponseEntity.ok().body(dto);
 
 	}
 
