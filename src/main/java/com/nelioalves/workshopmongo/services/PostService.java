@@ -30,10 +30,10 @@ public class PostService {
 	}
 	
 	
-	public void insertComments(String id,CommentDTO dto) {
+	public Post insertComments(String id,CommentDTO dto) {
 		Post obj = findById(id);
 		obj.getComments().add(dto);
-		postRepository.save(obj);
+		return postRepository.save(obj);
 	}
 
 }
