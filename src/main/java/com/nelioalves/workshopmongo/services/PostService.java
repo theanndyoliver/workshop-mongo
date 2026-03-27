@@ -35,5 +35,11 @@ public class PostService {
 		obj.getComments().add(dto);
 		return postRepository.save(obj);
 	}
+	
+	
+	public List<Post> findByTitle(String text) {
+		return postRepository.findByTitleContainingIgnoreCase(text);
+		
+	}
 
 }
